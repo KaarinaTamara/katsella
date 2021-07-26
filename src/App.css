@@ -1,4 +1,26 @@
-.App {
+* {
+  font-size: 125%;
+ 
+}
+
+h1 {
+  font-size: 4rem; 
+  text-align: center; 
+}
+
+.logo {
+  background: transparent; 
+
+}
+
+ul {
+  list-style-type: none;
+  text-transform: capitalize; 
+  font-size: 1rem; 
+}
+
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +57,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
