@@ -80,10 +80,10 @@ function App() {
         <label htmlFor="userWatchList">Add your next program to watch list!</label>
 
         <input type="text" id="userWatchList" onChange={handleChange} 
-        // 48) 
+         
         value={userInput}
         />
-        {/* 35.1) */}
+        
         <button>Add to my list!</button>
       </form>
     </div>      
@@ -105,12 +105,15 @@ function App() {
               <p>{programObject.title}</p>
               
               <button onClick={ deferrerFunction }>Watched this!</button>
-            </li>
+                
+            </li>
 
           )
         }) 
         }
       </ul>
+    
+    
     </div>
   );
 }
