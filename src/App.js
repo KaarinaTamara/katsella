@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import firebase from './firebase';
-import logo from './logo.jpg';
+import logo from './logo2.png';
+import Modal from "./Component/Modal";
 import './App.css';
 
 function App() {
@@ -59,7 +60,6 @@ function App() {
     setUserInput("");
   } 
 
-  // 51)
   const handleDelete = (keyOfProgramToDelete) => {
 
     const dbRef = firebase.database().ref();
@@ -74,13 +74,11 @@ function App() {
           <h1>Katsella</h1>
         </header>
 
-  
+    <div class="form">
       <form action="submit" onSubmit={handleSubmit}> 
-      {/* 44) wil go here */}
-        {/* 34) */}
+ 
         <label htmlFor="userWatchList">Add your next program to watch list!</label>
 
-        {/* 35) */}
         <input type="text" id="userWatchList" onChange={handleChange} 
         // 48) 
         value={userInput}
@@ -88,9 +86,11 @@ function App() {
         {/* 35.1) */}
         <button>Add to my list!</button>
       </form>
+    </div>      
 
       {/* 30) */}
       <ul>
+        <h2>Your Katsella List</h2>
         {
         // 31
         watchList.map( (programObject) => {
@@ -100,13 +100,13 @@ function App() {
             handleDelete(programObject.key);
           }
 
-          // 32)
           return (
             <li key={programObject.key}>
               <p>{programObject.title}</p>
-              {/* 50) */}
+              
               <button onClick={ deferrerFunction }>Watched this!</button>
             </li>
+
           )
         }) 
         }
