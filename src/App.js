@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
 import firebase from './firebase';
 import logo from './logo2.png';
-import Modal from "./Component/Modal";
+import { Modal } from './components/modal/Modal';
+
 import './App.css';
 
 function App() {
  
   const [watchList, setWatchList] = useState([]); 
   const [ userInput, setUserInput ] = useState("");
+// for our Modal buttons
+  const [show, setShow] = useState(false);   
+  const closeModalHandler = () => setShow(false);
+
   
  //call useEffect and grab our database
   useEffect( () => { 
@@ -42,22 +47,19 @@ function App() {
     setUserInput(event.target.value);
   }
 
-  const handleSubmit = (event) => {
-     
+  const handleSubmit = (event) => {     
     event.preventDefault();
-
-    console.log("Form submitted");
-
+   
     const dbRef =firebase.database().ref();
 
-    if (userInput == "") {
-        alert('enter something ok');
+    if (userInput === "") {
+        alert('Sorry, you need to make sure you enter something here to feed the Katsella monster');
     }
     else {
-           dbRef.push(userInput);
+           dbRef.push(userInput).trim();
+        console.log("a new show was added"); 
     }
-
-    setUserInput("");
+    setUserInput("".trim());
   } 
 
   const handleDelete = (keyOfProgramToDelete) => {
@@ -70,11 +72,13 @@ function App() {
   return (
     <div className="App">
         <header>
-            <img src={ logo } alt="logo" class="logo"/>
-          <h1>Katsella</h1>
+            <h1>Katsella</h1>
+            <img src={ logo } alt="logo" className="logo"/>
         </header>
 
-    <div class="form">
+        <main>
+
+    <div className="form">
       <form action="submit" onSubmit={handleSubmit}> 
  
         <label htmlFor="userWatchList">Add your next program to watch list!</label>
@@ -88,15 +92,15 @@ function App() {
       </form>
     </div>      
 
-      {/* 30) */}
+ 
       <ul>
         <h2>Your Katsella List</h2>
         {
-        // 31
+        
         watchList.map( (programObject) => {
-          // 54)
+        
           const deferrerFunction = () => {
-          // 55)
+         
             handleDelete(programObject.key);
           }
 
@@ -104,16 +108,28 @@ function App() {
             <li key={programObject.key}>
               <p>{programObject.title}</p>
               
-              <button onClick={ deferrerFunction }>Watched this!</button>
-                
+                <button onClick={ deferrerFunction }>Watched this!</button>
+                <button onClick={() => setShow(true)} className="btn-open-modal">Comment</button>
+                <Modal show={show} close={closeModalHandler} />
+                            
             </li>
 
           )
         }) 
         }
       </ul>
-    
-    
+        {/* INSERTING MODAL HERE */}
+        {/* { show ?  <div onclick={closeModalHandler} className="back-drop"></div> : null } */}
+        {/* <button onClick={() => setShow(true)} className="btn-open-modal">Comment</button> */}
+        {/* <Modal show={show} close={closeModalHandler} /> */}
+        
+        </main>
+        <footer>
+            <p>
+                Created at Juno College 2021
+            
+            </p>
+            </footer>
     </div>
   );
 }
@@ -135,16 +151,3 @@ export default App;
 //  -"I watched this" delete button next to each item 
 //  -Go into firebase and remove item from database
 //  -App updates to reflect deletion  
-
-// 1) From the starter code, delete everything between the div tags. Add an h1. also delete the logo import and file. 
-// 2) started a new app on firebase
-// 3) npm install firebase in cmdr 
-// 4) create and go to firebase.js
-// ....
-// 8) create realtime database in firebase
-// 9) added three programs to our list in our realtime database 
-// 10) run npm start
-// 11) add pseudo code 
-
-// ...
-// 29) this step was just editing our h1 tag/
