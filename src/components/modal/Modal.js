@@ -26,7 +26,7 @@ export const Modal = ({ show, close }) => {
                     <form className="modal-form">
 
                         <label for="userInformation">Listen up, Katsella: </label>
-                        <textarea id="userInformation" name="userInformation" cols="60" rows="8"></textarea>
+                        <textarea id="userInformation" name="userInformation" rows="8"></textarea>
 
                         <button type="submit">Submit</button>
 

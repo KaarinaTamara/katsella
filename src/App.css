@@ -114,6 +114,8 @@ label {
 }
 
 
+
+
 input {
   width: 70%; 
   margin: 0 auto; 
@@ -122,6 +124,14 @@ input {
   flex-direction: column; 
   justify-content: center;
   align-content: center;
+
+}
+
+input:hover, 
+input:focus {
+  -webkit-appearance: none;
+  outline: none; 
+  border-bottom: 4px solid rgb(233, 115, 203); 
 }
 
 /* returned list styling  */
@@ -154,7 +164,7 @@ li {
 
 button, 
 .btn-open-modal {
-  background: rgb(157, 136, 178); 
+  background-color: rgb(157, 136, 178); 
   color: rgb(44, 62, 80); 
   font-size: 1.5rem; 
   padding: .5rem 1.8rem; 
@@ -163,6 +173,10 @@ button,
   cursor: pointer;
   height: auto; 
   margin-left: 5rem; 
+}
+
+button:hover {
+  background-color: rgb(122, 103, 141);
 }
 
 
@@ -181,14 +195,20 @@ button,
 .modal-header {
   color: #e9e9e9; 
   padding: 1rem; 
-  /* display: flex; 
-  align-items: center; 
-  justify-content: space-between;  */
 }
 
 .modal-header span {
   font-size: 1.5rem; 
   cursor: pointer; 
+}
+
+.modal-header span:hover,
+.modal-header span:focus {
+  color:rgb(29, 28, 28); 
+}
+
+.modal-header span:active {
+  font-weight: bold; 
 }
 
 .modal-content {
@@ -199,10 +219,6 @@ button,
   margin-bottom: 1rem; 
 }
 
-.modal-body h3 {
-  font-size: 1.8rem; 
-  color: coral; 
-}
 
 .modal-body p {
   font-size: 2rem; 
@@ -221,19 +237,49 @@ button,
 
 .modal-form textarea {
   resize: none; 
+  width: 90%;
+  height: 40%;  
 }
 
+.modal-form textarea:hover,
+.modal-form textarea:focus {
+-webkit-appearance: none;
+outline: none; 
+border-bottom: 4px solid rgb(29, 28, 28); 
+}
+
+.modal-form textarea:active {
+  border: 4px solid rgb(44, 43, 43); 
+}
 
 .modal-form button,
 .modal-footer button {
-  background: #2c2c2c; 
-  color: #eee; 
-  font-size: 1rem; 
+  font-size: 1.5rem; 
   margin: 2rem; 
   padding: .5rem 1.8rem; 
   border: none; 
   outline: none; 
   cursor: pointer; 
+}
+
+.modal-form button {
+  background: #2c2c2c; 
+  color: #eee;
+}
+
+.modal-form button:hover, 
+.modal-form button:focus {
+  background-color:rgb(0, 0, 0);
+}
+
+.modal-footer button {
+  background: rgb(100, 177, 190); 
+  color: rgb(0, 0, 0); 
+}
+
+.modal-footer button:hover,
+.modal-footer button:focus {
+  background-color: rgb(68, 120, 129);
 }
 
 /* end of modal styling */
@@ -256,6 +302,26 @@ footer p {
   .header-banner {
     flex-direction: column-reverse; 
   }
-  
+}
 
+@media (max-width: 803px) {
+  .list button {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 715px) {
+  h1 {
+    font-size: 4rem; 
+  }
+
+  h2 {
+    font-size: 2.5rem; 
+  }
+}
+
+@media (max-width: 570px) {
+  h1 {
+    font-size: 3rem; 
+  }
 }
