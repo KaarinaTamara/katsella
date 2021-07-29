@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import firebase from './firebase';
 import logo from './logo2.png';
-import { Modal } from './components/modal/Modal';
+
+import { ProgramItem } from './components/program/ProgramItem'
 
 import './App.css';
 
@@ -10,8 +11,8 @@ function App() {
   const [watchList, setWatchList] = useState([]); 
   const [ userInput, setUserInput ] = useState("");
 // for our Modal buttons
-  const [show, setShow] = useState(false);   
-  const closeModalHandler = () => setShow(false);
+//   const [show, setShow] = useState(false);   
+  
 
   
  //call useEffect and grab our database
@@ -56,10 +57,10 @@ function App() {
         alert('Sorry, you need to make sure you enter something here to feed the Katsella monster');
     }
     else {
-           dbRef.push(userInput).trim();
+           dbRef.push(userInput);
         console.log("a new show was added"); 
     }
-    setUserInput("".trim());
+    setUserInput("");
   } 
 
   const handleDelete = (keyOfProgramToDelete) => {
@@ -72,64 +73,53 @@ function App() {
   return (
     <div className="App">
         <header>
-            <h1>Katsella</h1>
-            <img src={ logo } alt="logo" className="logo"/>
+            <div className="header-banner">
+                <h1>Katsella</h1>
+                <img src={ logo } alt="logo" className="logo"/>
+            </div>
         </header>
 
         <main>
+            <div className="about">
+                <h2>Who or WHAT is Katsella?!</h2>
+                <p>Meet Katsella, your best friend in organizing your watch lists amongst friends. Add as many, or as little, programs you want to watch and Katsella will keep them safe. Already watched something? Hit "watched this" and Katsella will eat it up and wont keep bugging you about it. Want to leave a comment for your fellow list users about a show? Smash that comment button and Katsella will keep your secrets safe (after sharing with your Katsella friends). Happy viewing!</p>
+            </div>
 
-    <div className="form">
-      <form action="submit" onSubmit={handleSubmit}> 
- 
-        <label htmlFor="userWatchList">Add your next program to watch list!</label>
+            <div className="form">
+                <h2>Feed Katsella</h2>
+                <form action="submit" onSubmit={handleSubmit}> 
+                    <label htmlFor="userWatchList">Add your next program to         watch list!</label>
 
-        <input type="text" id="userWatchList" onChange={handleChange} 
-         
-        value={userInput}
-        />
-        
-        <button>Add to my list!</button>
-      </form>
-    </div>      
+                    <input type="text" id="userWatchList" onChange= {handleChange} value={userInput} />
+                        
+                    <button>Add to my list!</button>
+                </form>
+            </div>      
 
- 
-      <ul>
-        <h2>Your Katsella List</h2>
-        {
-        
-        watchList.map( (programObject) => {
-        
-          const deferrerFunction = () => {
-         
-            handleDelete(programObject.key);
-          }
+            <div className="list">
+              <ul>
+                <h2>Your Katsella List</h2>
+                {
+                watchList.map( (programObject) => {
+                
+                  return (
+                        <ProgramItem
+                        handleDelete={handleDelete}
+                        programObject={programObject}        
+                        />
+                  )
+                }) 
+                }
+              </ul>        
 
-          return (
-            <li key={programObject.key}>
-              <p>{programObject.title}</p>
-              
-                <button onClick={ deferrerFunction }>Watched this!</button>
-                <button onClick={() => setShow(true)} className="btn-open-modal">Comment</button>
-                <Modal show={show} close={closeModalHandler} />
-                            
-            </li>
-
-          )
-        }) 
-        }
-      </ul>
-        {/* INSERTING MODAL HERE */}
-        {/* { show ?  <div onclick={closeModalHandler} className="back-drop"></div> : null } */}
-        {/* <button onClick={() => setShow(true)} className="btn-open-modal">Comment</button> */}
-        {/* <Modal show={show} close={closeModalHandler} /> */}
-        
+            </div>
         </main>
         <footer>
             <p>
                 Created at Juno College 2021
             
             </p>
-            </footer>
+        </footer>
     </div>
   );
 }

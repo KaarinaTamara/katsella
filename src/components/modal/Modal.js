@@ -10,17 +10,17 @@ export const Modal = ({ show, close }) => {
         <div className="modal-wrapper"
             style={{
                 transform: show ? 'translate(0vh)' : 'translate(-100vh)',
-                opacity: show ? '1' : '0'
+                opacity: show ? '1' : '0',
+                display: show ? 'block' : 'none'
             }}
         >
             
             <div className="modal-header">
-                <p>Comment</p>
                 <span onClick={close} className="close-modal-btn">x</span>
             </div>
             <div className="modal-content">
                 <div className="modal-body">
-                    <h2>Modal</h2>
+                    <h2>Tell Katsella your secrets</h2>
                     {/* <h2>{programObject.title}</h2> */}
                     <p>Leave a comment here for Katsella about this choice . Are you excited to watch it? Did you recommend it for a particular reason? This is your space and Katsella wants to know it all! </p>
                     <form className="modal-form">
