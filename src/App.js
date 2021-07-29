@@ -1,12 +1,19 @@
 import { useState, useEffect } from 'react';
 import firebase from './firebase';
-import logo from './logo.jpg';
+import logo from './logo2.png';
+
+import { ProgramItem } from './components/program/ProgramItem'
+
 import './App.css';
 
 function App() {
  
   const [watchList, setWatchList] = useState([]); 
   const [ userInput, setUserInput ] = useState("");
+// for our Modal buttons
+//   const [show, setShow] = useState(false);   
+  
+
   
  //call useEffect and grab our database
   useEffect( () => { 
@@ -41,25 +48,21 @@ function App() {
     setUserInput(event.target.value);
   }
 
-  const handleSubmit = (event) => {
-     
+  const handleSubmit = (event) => {     
     event.preventDefault();
-
-    console.log("Form submitted");
-
+   
     const dbRef =firebase.database().ref();
 
-    if (userInput == "") {
-        alert('enter something ok');
+    if (userInput === "") {
+        alert('Sorry, you need to make sure you enter something here to feed the Katsella monster');
     }
     else {
            dbRef.push(userInput);
+        console.log("a new show was added"); 
     }
-
     setUserInput("");
   } 
 
-  // 51)
   const handleDelete = (keyOfProgramToDelete) => {
 
     const dbRef = firebase.database().ref();
@@ -70,47 +73,53 @@ function App() {
   return (
     <div className="App">
         <header>
-            <img src={ logo } alt="logo" class="logo"/>
-          <h1>Katsella</h1>
+            <div className="header-banner">
+                <h1>Katsella</h1>
+                <img src={ logo } alt="logo" className="logo"/>
+            </div>
         </header>
 
-  
-      <form action="submit" onSubmit={handleSubmit}> 
-      {/* 44) wil go here */}
-        {/* 34) */}
-        <label htmlFor="userWatchList">Add your next program to watch list!</label>
+        <main>
+            <div className="about">
+                <h2>Who or WHAT is Katsella?!</h2>
+                <p>Meet Katsella, your best friend in organizing your watch lists amongst friends. Add as many, or as little, programs you want to watch and Katsella will keep them safe. Already watched something? Hit "watched this" and Katsella will eat it up and wont keep bugging you about it. Want to leave a comment for your fellow list users about a show? Smash that comment button and Katsella will keep your secrets safe (after sharing with your Katsella friends). Happy viewing!</p>
+            </div>
 
-        {/* 35) */}
-        <input type="text" id="userWatchList" onChange={handleChange} 
-        // 48) 
-        value={userInput}
-        />
-        {/* 35.1) */}
-        <button>Add to my list!</button>
-      </form>
+            <div className="form">
+                <h2>Feed Katsella</h2>
+                <form action="submit" onSubmit={handleSubmit}> 
+                    <label htmlFor="userWatchList">Add your next program to         watch list!</label>
 
-      {/* 30) */}
-      <ul>
-        {
-        // 31
-        watchList.map( (programObject) => {
-          // 54)
-          const deferrerFunction = () => {
-          // 55)
-            handleDelete(programObject.key);
-          }
+                    <input type="text" id="userWatchList" onChange= {handleChange} value={userInput} />
+                        
+                    <button>Add to my list!</button>
+                </form>
+            </div>      
 
-          // 32)
-          return (
-            <li key={programObject.key}>
-              <p>{programObject.title}</p>
-              {/* 50) */}
-              <button onClick={ deferrerFunction }>Watched this!</button>
-            </li>
-          )
-        }) 
-        }
-      </ul>
+            <div className="list">
+              <ul>
+                <h2>Your Katsella List</h2>
+                {
+                watchList.map( (programObject) => {
+                
+                  return (
+                        <ProgramItem
+                        handleDelete={handleDelete}
+                        programObject={programObject}        
+                        />
+                  )
+                }) 
+                }
+              </ul>        
+
+            </div>
+        </main>
+        <footer>
+            <p>
+                Created at Juno College 2021
+            
+            </p>
+        </footer>
     </div>
   );
 }
@@ -132,16 +141,3 @@ export default App;
 //  -"I watched this" delete button next to each item 
 //  -Go into firebase and remove item from database
 //  -App updates to reflect deletion  
-
-// 1) From the starter code, delete everything between the div tags. Add an h1. also delete the logo import and file. 
-// 2) started a new app on firebase
-// 3) npm install firebase in cmdr 
-// 4) create and go to firebase.js
-// ....
-// 8) create realtime database in firebase
-// 9) added three programs to our list in our realtime database 
-// 10) run npm start
-// 11) add pseudo code 
-
-// ...
-// 29) this step was just editing our h1 tag/
