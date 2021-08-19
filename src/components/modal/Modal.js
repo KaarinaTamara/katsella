@@ -6,8 +6,8 @@ import {useState} from 'react';
 // import { programObject } from './App.js';
 
 export const Modal = ({ show, close }) => {
+    //Storing the comments 
     const [inputSubmittedComment, setInputSubmittedComment] = useState("");
-
     const [commentInput, setCommentInput] = useState("");
     const handleChange = (e) => {
         if (e.target.name === "userInformation") {
@@ -25,7 +25,6 @@ export const Modal = ({ show, close }) => {
             setInputSubmittedComment(commentInput + storedComment)
             setCommentInput("")
         } 
-
     }
 
     return (
