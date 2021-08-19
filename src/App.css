@@ -150,7 +150,6 @@ ul {
   border-radius: 15px; 
   list-style-type: none;
   text-transform: capitalize; 
- 
 }
 
 li {
@@ -178,7 +177,6 @@ button,
   outline: none; 
   cursor: pointer;
   height: auto;  
-  width: 50%; 
   align-items: center;
   margin: 1rem auto;
 }

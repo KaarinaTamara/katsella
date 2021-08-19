@@ -6,6 +6,15 @@ import {useState} from 'react';
 // import { programObject } from './App.js';
 
 export const Modal = ({ show, close }) => {
+    //Storing name in comment modal
+    const [inputSubmittedName, setInputSubmittedName] = useState ("");
+    const [nameInput, setNameInput] = useState("");
+    const nameChange = (e) => {
+       if (e.target.name === "nameInformation") {
+            setNameInput(e.target.value)
+        }
+    }
+    
     //Storing the comments 
     const [inputSubmittedComment, setInputSubmittedComment] = useState("");
     const [commentInput, setCommentInput] = useState("");
@@ -24,8 +33,13 @@ export const Modal = ({ show, close }) => {
             let storedComment = inputSubmittedComment
             setInputSubmittedComment(commentInput + storedComment)
             setCommentInput("")
+            // let storedName = inputSubmittedName
+            // setInputSubmittedName(nameInput + storedName)
+            // setNameInput("")
         } 
+        
     }
+
 
     return (
         // BUILDING OUR MODAL
@@ -48,7 +62,8 @@ export const Modal = ({ show, close }) => {
                     <form className="modal-form">
 
                         <label htmlFor="userInformation">Listen up, Katsella: </label>
-                        <input type="text" className="name" placeholder="Name:"></input> 
+                        {/* <input type="text" id="nameInformation" className="nameInformation" onChange= {nameChange} value={nameInput}></input> */}
+                        {/* <input type="text" className="nameInformation" value={nameInput} onChange={nameChange}></input>  */}
                         <textarea id="userInformation" name="userInformation" rows="8" className="userComment" value={commentInput} onChange={handleChange}></textarea>
                         
                         <button type="submit" onClick={handleClick}>Submit</button>
@@ -56,6 +71,7 @@ export const Modal = ({ show, close }) => {
                     </form>
                 </div>
                 <div className="showComment">
+                    <p className="submittedName">{inputSubmittedName}</p>
                     <p className="submittedComment">{inputSubmittedComment}</p>
                 </div>
                 <div className="modal-footer">
