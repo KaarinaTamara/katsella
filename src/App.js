@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import firebase from './firebase';
 import logo from './logo2.png';
+import Swal from 'sweetalert2'
 
 import { ProgramItem } from './components/program/ProgramItem'
 
@@ -54,11 +55,14 @@ function App() {
     const dbRef =firebase.database().ref();
 
     if (userInput === "") {
-        alert('Sorry, you need to make sure you enter something here to feed the Katsella monster');
+        Swal.fire({
+            icon: 'error',
+            title: 'And I oop-',
+            text: 'I sat on the button. Please enter a program and try submitting again!',
+          })
     }
     else {
            dbRef.push(userInput);
-        console.log("a new show was added"); 
     }
     setUserInput("");
   } 
@@ -88,10 +92,8 @@ function App() {
             <div className="form">
                 <h2>Feed Katsella</h2>
                 <form action="submit" onSubmit={handleSubmit}> 
-                    <label htmlFor="userWatchList">Add your next program to         watch list!</label>
-
+                    <label htmlFor="userWatchList">Add your next program to watch list!</label>
                     <input type="text" id="userWatchList" onChange= {handleChange} value={userInput} />
-                        
                     <button>Add to my list!</button>
                 </form>
             </div>      
@@ -101,7 +103,6 @@ function App() {
                 <h2>Your Katsella List</h2>
                 {
                 watchList.map( (programObject) => {
-                
                   return (
                         <ProgramItem
                         handleDelete={handleDelete}

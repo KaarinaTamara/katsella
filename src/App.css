@@ -1,3 +1,10 @@
+*,
+*:after,
+*:before {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
 body {
   font-size: 125%; 
@@ -9,7 +16,6 @@ h2 {
   font-size: 3rem; 
   color: rgb(0, 0, 0);
   font-family: 'Cagliostro', sans-serif; 
-  margin: 0; 
   border-radius: 15px 15px 0 0; 
   border-bottom: 8px solid rgb(29, 28, 28); 
 }
@@ -28,7 +34,6 @@ p {
 /* header styling */
 
 header {
-  /* background-color: rgb(148, 113, 182);  */
   background-image: url(./header-image.jpg); 
   background-size: cover; 
   background-position: center; 
@@ -63,7 +68,6 @@ h1 {
   margin: auto; 
 }
 
-
 /* end of header */
 
 main {
@@ -82,8 +86,6 @@ main {
 .about h2 {
   background-color: rgb(122, 236, 211); 
 }
-
-
 
 /* input styling */
 .form {
@@ -113,9 +115,6 @@ label {
   margin: 0 auto; 
 }
 
-
-
-
 input {
   width: 70%; 
   margin: 0 auto; 
@@ -139,11 +138,11 @@ input:focus {
   width: 70vw; 
   margin: 0 auto; 
   margin-bottom: 5rem; 
+  
 }
 
 .list h2 {
   background-color: rgb(100, 177, 190); 
-  margin: 0 auto;
 }
 
 ul {
@@ -151,7 +150,6 @@ ul {
   border-radius: 15px; 
   list-style-type: none;
   text-transform: capitalize; 
-  margin: 0 auto;  
 }
 
 li {
@@ -160,6 +158,13 @@ li {
 
 .list p {
   text-align: center; 
+  font-size: 2.5rem; 
+}
+
+.list-buttons {
+  display: flex; 
+  flex-direction: column; 
+  flex-wrap: wrap; 
 }
 
 button, 
@@ -171,14 +176,14 @@ button,
   border: none; 
   outline: none; 
   cursor: pointer;
-  height: auto; 
-  margin-left: 5rem; 
+  height: auto;  
+  align-items: center;
+  margin: 1rem auto;
 }
 
 button:hover {
   background-color: rgb(122, 103, 141);
 }
-
 
 /* MODAL STYLING */
 
@@ -219,7 +224,6 @@ button:hover {
   margin-bottom: 1rem; 
 }
 
-
 .modal-body p {
   font-size: 2rem; 
   background-color:rgb(44, 43, 43);
@@ -250,6 +254,12 @@ border-bottom: 4px solid rgb(29, 28, 28);
 
 .modal-form textarea:active {
   border: 4px solid rgb(44, 43, 43); 
+}
+
+.submittedComment {
+  display: flex; 
+  flex-direction: column;
+  flex-wrap: wrap; 
 }
 
 .modal-form button,
