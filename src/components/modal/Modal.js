@@ -7,13 +7,6 @@ import {useState} from 'react';
 
 export const Modal = ({ show, close }) => {
     //Storing name in comment modal
-    const [inputSubmittedName, setInputSubmittedName] = useState ("");
-    const [nameInput, setNameInput] = useState("");
-    const nameChange = (e) => {
-       if (e.target.name === "nameInformation") {
-            setNameInput(e.target.value)
-        }
-    }
     
     //Storing the comments 
     const [inputSubmittedComment, setInputSubmittedComment] = useState("");
@@ -71,7 +64,7 @@ export const Modal = ({ show, close }) => {
                     </form>
                 </div>
                 <div className="showComment">
-                    <p className="submittedName">{inputSubmittedName}</p>
+                    
                     <p className="submittedComment">{inputSubmittedComment}</p>
                 </div>
                 <div className="modal-footer">
