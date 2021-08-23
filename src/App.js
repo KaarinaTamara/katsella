@@ -128,7 +128,7 @@ function App() {
 export default App;
 
 
-// ***PSEUDO CODE***
+// ***PSEUDO CODE***k
 // Allow user to input their desired tv show(s) and/or movie(s) 
 //  -Have form with input text and a submit button
 //  -Constantly search for changes, collecting any and all inputted data in real time

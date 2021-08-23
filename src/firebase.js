@@ -4,15 +4,23 @@ import 'firebase/database'; 
 
 // 6) 
 const firebaseConfig = {
-    apiKey: "AIzaSyDp6dAoFDgrnNkkf3KJnE-3CVUDkn_mfyw",
-    authDomain: "watch-me-app-86d7d.firebaseapp.com",
-    projectId: "watch-me-app-86d7d",
-    storageBucket: "watch-me-app-86d7d.appspot.com",
-    messagingSenderId: "152552326637",
-    appId: "1:152552326637:web:f740f755ab494473c2d3e4"
+    apiKey: "AIzaSyDWdApoAlQvjjdMgsWbj54QpglZASD83Ns",
+
+    authDomain: "katsella-348d3.firebaseapp.com",
+
+    projectId: "katsella-348d3",
+
+    storageBucket: "katsella-348d3.appspot.com",
+
+    messagingSenderId: "293055864962",
+
+    appId: "1:293055864962:web:91a7cf952df5eb5150149b"
+
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
 //   7) firebase is now set up!
 export default firebase;
+
+
